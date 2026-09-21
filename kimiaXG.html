@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Belajar Kimia Kelas 10 - Materi & Latihan Soal</title>
+    <!-- MathJax untuk Rendring Rumus Kimia & Matematika -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #0d9488;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), #1e40af);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .main-container {
+            display: flex;
+            gap: 20px;
+            max-width: 1600px;
+            margin: 20px auto;
+            padding: 0 20px;
+            height: calc(100vh - 120px);
+        }
+
+        /* Column 1: Materi */
+        .column-materi {
+            flex: 1;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Column 2: Latihan Soal */
+        .column-latihan {
+            flex: 1;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .column-header {
+            background: #f1f5f9;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .column-header h2 {
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .column-content {
+            padding: 25px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        /* Typography & Components for Materi */
+        .materi-section {
+            margin-bottom: 30px;
+        }
+
+        .materi-section h3 {
+            color: var(--primary-light);
+            border-bottom: 2px solid #dbeafe;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-size: 1.15rem;
+        }
+
+        .materi-section h4 {
+            margin: 15px 0 8px 0;
+            color: #334155;
+        }
+
+        .materi-section p, .materi-section ul {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .materi-section ul {
+            padding-left: 20px;
+        }
+
+        .materi-section li {
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        table, th, td {
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eff6ff;
+            color: var(--primary);
+        }
+
+        .highlight-box {
+            background-color: #f0fdf4;
+            border-left: 4px solid var(--accent);
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Tabs for Latihan Soal */
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            border: none;
+            background: #e2e8f0;
+            color: #475569;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Question Styles */
+        .question-card {
+            background: #fafafa;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 18px;
+        }
+
+        .question-card p.q-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .options-list li {
+            margin-bottom: 8px;
+        }
+
+        .options-list label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+
+        .options-list label:hover {
+            background: #f1f5f9;
+        }
+
+        /* Action Buttons */
+        .btn-submit, .btn-toggle {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .btn-submit:hover, .btn-toggle:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-toggle {
+            background: var(--accent);
+            margin-top: 10px;
+        }
+
+        .btn-toggle:hover {
+            background: #0f766e;
+        }
+
+        .answer-box {
+            display: none;
+            margin-top: 10px;
+            padding: 12px;
+            background: #eff6ff;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary-light);
+            font-size: 0.9rem;
+        }
+
+        .score-result {
+            display: none;
+            padding: 15px;
+            background: #dcfce7;
+            color: #166534;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        textarea.essay-input {
+            width: 100%;
+            height: 80px;
+            padding: 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            margin-top: 8px;
+            resize: vertical;
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+                height: auto;
+            }
+            .column-materi, .column-latihan {
+                height: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Portal Kimia SMA - Kelas 10</h1>
+        <p>Materi Pembelajaran Khusus Kimia Hijau, Simbol Bahaya GHS, Alat Lab & K3</p>
+    </header>
+
+    <div class="main-container">
+        <!-- KOLOM 1: MATERI LENGKAP -->
+        <div class="column-materi">
+            <div class="column-header">
+                <h2>📚 Ringkasan Materi Lengkap</h2>
+            </div>
+            <div class="column-content">
+                
+                <div class="materi-section">
+                    <h3>BAB 1: Prinsip & Penerapan Kimia Hijau (Green Chemistry)</h3>
+                    <p>Kimia Hijau adalah pendekatan dalam ilmu kimia yang berfokus pada perancangan produk dan proses kimia untuk mengurangi atau meminimalisasi penggunaan dan pembentukan zat berbahaya.</p>
+                    
+                    <h4>1. Ekonomi Atom (Atom Economy)</h4>
+                    <p>Mengukur sejauh mana atom dari bahan baku (reaktan) terkonversi menjadi produk akhir yang diinginkan tanpa menyisakan banyak atom sebagai produk sampingan (by-product). Tujuan utamanya adalah memaksimalkan integrasi seluruh bahan ke produk target.</p>
+                    <p><strong>Contoh Kasus:</strong> Reaksi pembakaran metana \(CH_4(g) + 2O_2(g) \rightarrow CO_2(g) + 2H_2O(g)\) memiliki efisiensi konversi tinggi, namun pelepasan gas \(CO_2\) berlebih berdampak negatif secara global karena merupakan gas rumah kaca pemicu pemanasan global.</p>
+
+                    <h4>2. Penggunaan Katalis (Use of Catalysts)</h4>
+                    <p>Katalis berfungsi menurunkan energi aktivasi reaksi tanpa terpakai secara permanen. Penggunaan katalis selektif jauh lebih unggul dibandingkan memperbesar jumlah reaktan karena tidak menyisakan limbah tambahan dan menghemat konsumsi energi.</p>
+
+                    <h4>3. Pelarut & Alat Bantu Lebih Aman (Safer Solvents)</h4>
+                    <p>Mengganti pelarut organik toksik dan volatil (seperti benzena, kloroform \(CHCl_3\), diklorometana \(CH_2Cl_2\), atau \(CCl_4\)) dengan pelarut alternatif ramah lingkungan seperti Air (\(H_2O\)) atau Karbon Dioksida Superkritis (\(SCCO_2\)).</p>
+
+                    <h4>4. Bahan Baku Terbarukan (Renewable Feedstocks)</h4>
+                    <p>Menggunakan sumber daya alami terbarukan untuk bahan bakar masa depan, contohnya memproduksi bioetanol dan biodiesel dari limbah biomassa pertanian (bukan batu bara atau minyak bumi).</p>
+                </div>
+
+                <div class="materi-section">
+                    <h3>BAB 2: Simbol Bahaya Zat Kimia (Piktogram GHS)</h3>
+                    <p>Sistem Piktogram GHS mengidentifikasi potensi bahaya dari zat kimia secara universal:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Simbol Piktogram</th>
+                                <th>Sifat / Bahaya</th>
+                                <th>Dampak & Contoh Zat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Silinder Gas</td>
+                                <td>Gas Bertekanan</td>
+                                <td>Tersimpan di bawah tekanan tinggi, berisiko meledak jika dipanaskan (Contoh: LPG, tabung O2).</td>
+                            </tr>
+                            <tr>
+                                <td>Nyala Api di Atas Lingkaran</td>
+                                <td>Pengoksidasi (Oxidizing)</td>
+                                <td>Memperhebat kebakaran bahan lain dengan melepaskan oksigen (Contoh: \(KMnO_4\)).</td>
+                            </tr>
+                            <tr>
+                                <td>Pohon Kering & Ikan Mati</td>
+                                <td>Bahaya Lingkungan</td>
+                                <td>Sangat beracun bagi ekosistem perairan. Dilarang dibuang langsung ke selokan.</td>
+                            </tr>
+                            <tr>
+                                <td>Tanda Seru</td>
+                                <td>Iritan / Toksisitas Akut Sedang</td>
+                                <td>Iritasi kulit, mata, atau saluran pernapasan.</td>
+                            </tr>
+                            <tr>
+                                <td>Cairan Menetes Mengikis Logam & Tangan</td>
+                                <td>Korosif (Corrosive)</td>
+                                <td>Menyebabkan luka bakar kimia (chemical burn) dan mengikis logam (Contoh: \(HCl\) pekat).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="materi-section">
+                    <h3>BAB 3: Alat-Alat Laboratorium Kimia & Fungsinya</h3>
+                    <ul>
+                        <li><strong>Gelas Ukur:</strong> Alat silinder kaca tinggi berskala untuk mengukur volume cairan dengan tingkat ketelitian sedang (misal: mengambil 35 mL larutan \(NaOH\)).</li>
+                        <li><strong>Labu Ukur (Volumetric Flask):**</strong> Labu leher panjang dengan garis batas lingkaran tunggal (calibrated ring) untuk membuat larutan standar dengan presisi tinggi.</li>
+                        <li><strong>Buret:</strong> Pipa kaca berskala dengan kran di ujung bawah untuk mengeluarkan titran secara terukur dalam titrasi asam-basa.</li>
+                        <li><strong>Corong Pemisah (Separatory Funnel):</strong> Digunakan memisahkan dua zat cair yang tidak saling bercampur (immiscible), contoh: air dan kloroform.</li>
+                        <li><strong>Mortal dan Alu (Mortar & Pestle):</strong> Peralatan porselen untuk menghaluskan kristal padatan menjadi serbuk.</li>
+                    </ul>
+                </div>
+
+                <div class="materi-section">
+                    <h3>BAB 4: Keselamatan & Kesehatan Kerja (K3) Laboratorium</h3>
+                    <div class="highlight-box">
+                        <strong>Aturan Berpakaian (Dress Code):</strong> Wajib memakai jas lab lengan panjang terkancing, kacamata pelindung (safety goggles), sepatu tertutup, mengikat rambut panjang, serta <strong>dilarang menggunakan lensa kontak (contact lenses)</strong> dan sepatu sandal.
+                    </div>
+                    <h4>Prosedur Darurat:</h4>
+                    <ul>
+                        <li><strong>Percikan Kimia pada Mata:</strong> Segera bilas di eyewash station dengan air mengalir selama minimal 15–20 menit. Dilarang menetralkan mata dengan zat asam/basa lain.</li>
+                        <li><strong>Pengenceran Asam Sulfat Pekat (\(H_2SO_4\)):</strong> Reaksi bersifat sangat eksoterm. Prosedur benar: Tuang asam pekat sedikit demi sedikit ke dalam air melalui dinding wadah sambil diaduk. Jangan balikkan prosedurnya!</li>
+                        <li><strong>Reaksi Gas Beracun:</strong> Reaksi yang menghasilkan gas beracun (seperti gas \(NO_2\) warna cokelat dari reaksi logam Cu dan \(HNO_3\) pekat) wajib dilakukan di dalam <strong>Lemari Asam (Fume Hood)</strong>.</li>
+                        <li><strong>Dokumen MSDS/SDS:</strong> Dokumen memuat sifat fisik, bahaya, penanganan darurat, dan instruksi penyimpanan zat kimia.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- KOLOM 2: LATIHAN SOAL INTERAKTIF -->
+        <div class="column-latihan">
+            <div class="column-header">
+                <h2>✍️ Lembar Latihan Soal</h2>
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="switchTab('pg')">Pilihan Ganda (50)</button>
+                    <button class="tab-btn" onclick="switchTab('essai')">Esai (15)</button>
+                </div>
+            </div>
+            
+            <div class="column-content">
+                
+                <!-- TAB 1: PILIHAN GANDA -->
+                <div id="tab-pg" class="tab-content active">
+                    <div id="score-display" class="score-result"></div>
+                    <form id="pg-form">
+                        <div id="pg-container"></div>
+                        <button type="button" class="btn-submit" onclick="gradePG()">Periksa & Hitung Nilai Pilihan Ganda</button>
+                    </form>
+                </div>
+
+                <!-- TAB 2: ESAI -->
+                <div id="tab-essai" class="tab-content">
+                    <div id="essai-container"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DATA SOAL PILIHAN GANDA (50 SOAL)
+        const pgData = [
+            {
+                q: "1. Prinsip Kimia Hijau yang menekankan konversi maksimum bahan baku menjadi produk tanpa menyisakan banyak produk sampingan adalah...",
+                options: ["A. Ekonomi Atom", "B. Penggunaan Katalis", "C. Efisiensi Energi", "D. Pencegahan Limbah", "E. Reduksi Turunan"],
+                ans: 0,
+                desc: "Pembahasan: Ekonomi Atom (Atom Economy) bertujuan memaksimalkan jumlah atom reaktan menjadi produk target."
+            },
+            {
+                q: "2. Keunggulan utama penggunaan katalis selektif dibandingkan menambah reaktan dalam reaksi industri adalah...",
+                options: ["A. Katalis ikut habis bereaksi", "B. Katalis menurunkan energi aktivasi tanpa terpakai secara permanen", "C. Katalis mengubah reaksi endoterm jadi eksoterm", "D. Katalis menaikkan suhu secara drastis", "E. Katalis menambah massa produk melebihi hukum kekekalan"],
+                ans: 1,
+                desc: "Pembahasan: Katalis berfungsi menurunkan energi aktivasi reaksi tanpa terpakai secara permanen."
+            },
+            {
+                q: "3. Pelarut ramah lingkungan yang paling sesuai digunkan menggantikan kloroform atau CCl4 adalah...",
+                options: ["A. Benzena", "B. Diklorometana", "C. Air (H2O) atau SCCO2", "D. Toluena", "E. Metanol murni"],
+                ans: 2,
+                desc: "Pembahasan: Air dan Karbon Dioksida Superkritis (SCCO2) adalah pelarut non-toksik aman lingkungan."
+            },
+            {
+                q: "4. Reaksi pembakaran metana CH4 + 2O2 -> CO2 + 2H2O menghasilkan CO2 yang berdampak global yaitu...",
+                options: ["A. Menipiskan lapisan ozon", "B. Hujan asam", "C. Pemanasan global (gas rumah kaca)", "D. Mengikat O2 bebas", "E. Pembentukan racun karsinogenik"],
+                ans: 2,
+                desc: "Pembahasan: Gas CO2 merupakan salah satu Gas Rumah Kaca (GRK) utama penyebab pemanasan global."
+            },
+            {
+                q: "5. Contoh penerapan prinsip penggunaan bahan baku terbarukan adalah...",
+                options: ["A. Batu bara cair", "B. Naphtha minyak bumi", "C. Bioetanol dari limbah pertanian", "D. Gas alam dasar laut", "E. Cracking minyak mentah"],
+                ans: 2,
+                desc: "Pembahasan: Bioetanol dan biodiesel diproduksi dari sumber biomassa terbarukan."
+            },
+            {
+                q: "6. Piktogram simbol silinder gas hitam mengindikasikan bahaya zat...",
+                options: ["A. Tersimpan di bawah tekanan tinggi dan berisiko meledak", "B. Sangat mudah terbakar", "C. Bersifat radioaktif", "D. Racun akut", "E. Mengikis logam"],
+                ans: 0,
+                desc: "Pembahasan: Simbol silinder gas berarti gas bertekanan tinggi."
+            },
+            {
+                q: "7. Simbol 'nyala api di atas lingkaran' pada KMnO4 menandakan zat bersifat...",
+                options: ["A. Mudah meledak", "B. Pengoksidasi (Oxidizing)", "C. Flammable", "D. Mutagenik", "E. Iritan"],
+                ans: 1,
+                desc: "Pembahasan: Flame over circle menandakan sifat Pengoksidasi."
+            },
+            {
+                q: "8. Piktogram pohon kering dan ikan mati menunjukkan penanganan limbah harus...",
+                options: ["A. Dibuang langsung ke selokan", "B. Dibakar di tempat terbuka", "C. Dilarang dibuang langsung ke lingkungan & ditampung di wadah khusus B3", "D. Dinetralkan asam pekat", "E. Dicampur sampah organik"],
+                ans: 2,
+                desc: "Pembahasan: Limbah berbahaya bagi lingkungan akuatik wajib ditampung khusus."
+            },
+            {
+                q: "9. Piktogram tanda seru mengindikasikan potensi bahaya...",
+                options: ["A. Kematian mendadak", "B. Kerusakan mata permanen", "C. Karsinogenik", "D. Ledakan mekanis", "E. Iritasi kulit/mata/saluran napas"],
+                ans: 4,
+                desc: "Pembahasan: Tanda seru menandakan iritan atau toksisitas akut tingkat sedang."
+            },
+            {
+                q: "10. Cairan HCl pekat berlabel piktogram korosif. Jika mengenai kulit dapat menyebabkan...",
+                options: ["A. Pembekuan darah", "B. Luka bakar kimia (chemical burn)", "C. Ruam ringan", "D. Kebal dingin", "E. Infeksi jamur"],
+                ans: 1,
+                desc: "Pembahasan: Zat korosif menyebabkan kerusakan/luka bakar kimia pada jaringan kulit."
+            },
+            {
+                q: "11. Alat laboratorium silinder berskala untuk mengambil 35 mL larutan NaOH dengan ketelitian sedang adalah...",
+                options: ["A. Beaker glass", "B. Erlenmeyer", "C. Tabung reaksi", "D. Gelas ukur", "E. Pipet tetes"],
+                ans: 3,
+                desc: "Pembahasan: Gelas ukur digunakan untuk mengukur cairan ketelitian sedang."
+            },
+            {
+                q: "12. Alat kaca leher panjang dengan garis batas tunggal untuk membuat larutan standar presisi tinggi dinamakan...",
+                options: ["A. Labu Erlenmeyer", "B. Beaker glass", "C. Labu Ukur (Volumetric Flask)", "D. Piknometer", "E. Corong Buchner"],
+                ans: 2,
+                desc: "Pembahasan: Labu ukur digunakan membuat/mengencerkan larutan standar presisi tinggi."
+            },
+            {
+                q: "13. Alat berupa pipa kaca panjang berskala dengan kran pengatur di ujung bawah untuk titrasi adalah...",
+                options: ["A. Buret", "B. Pipet Ukur", "C. Pipet Volume", "D. Kondensor", "E. Desikator"],
+                ans: 0,
+                desc: "Pembahasan: Buret digunakan untuk mengukur titran dalam percobaan titrasi."
+            },
+            {
+                q: "14. Alat untuk memisahkan campuran air dan kloroform (immiscible) berdasarkan perbedaan massa jenis adalah...",
+                options: ["A. Corong biasa", "B. Corong Pemisah", "C. Corong Buchner", "D. Desikator", "E. Cawan penguap"],
+                ans: 1,
+                desc: "Pembahasan: Corong pemisah memisahkan cairan yang tidak saling bercampur."
+            },
+            {
+                q: "15. Peralatan porselen untuk menghaluskan kristal garam menjadi serbuk halus adalah...",
+                options: ["A. Cawan porselen", "B. Krus porselen", "C. Plat tetes", "D. Kaca arloji", "E. Mortal dan alu (Mortar and Pestle)"],
+                ans: 4,
+                desc: "Pembahasan: Mortar dan pestle (mortal & alu) digunakan menghaluskan sampel padat."
+            },
+            {
+                q: "16. Pertolongan pertama saat mata terkena percikan NaOH pekat adalah...",
+                options: ["A. Membilas mata di eyewash station dengan air mengalir min 15-20 menit", "B. Meneteskan obat tetes dan ditutup kassa", "C. Menggosok mata", "D. Menetralkan dengan HCl", "E. Meniup mata dengan kipas"],
+                ans: 0,
+                desc: "Pembahasan: Segera bilas air mengalir bersih selama minimal 15-20 menit."
+            },
+            {
+                q: "17. Prosedur keselamatan yang benar dalam pengenceran Asam Sulfat Pekat (H2SO4 98%) adalah...",
+                options: ["A. Menuangkan air cepat ke asam pekat", "B. Mengocoknya dalam botol tertutup", "C. Menuangkan asam pekat sedikit demi sedikit ke dalam air lewat dinding wadah", "D. Memanaskan air hingga mendidih dulu", "E. Mencampur tanpa pengadukan"],
+                ans: 2,
+                desc: "Pembahasan: Asam dituangkan ke air untuk mencegah percikan eksoterm yang berbahaya."
+            },
+            {
+                q: "18. Reaksi Cu dengan HNO3 pekat menghasilkan gas NO2 cokelat beracun. Reaksi ini wajib dilakukan di...",
+                options: ["A. Meja terbuka", "B. Luar ruangan", "C. Ruang timbang", "D. Lemari Asam (Fume Hood)", "E. Wadah tertutup tanpa udara"],
+                ans: 3,
+                desc: "Pembahasan: Lemari asam dilengkapi pengisap udara untuk gas beracun/iritan."
+            },
+            {
+                q: "19. Tata tertib keselamatan berpakaian di laboratorium kimia yang SALAH adalah...",
+                options: ["A. Pakai jas lab lengan panjang terkancing", "B. Menggunakan sepatu sandal terbuka atau hak tinggi", "C. Mengikat rambut panjang", "D. Menggunakan safety goggles", "E. Melepas lensa kontak"],
+                ans: 1,
+                desc: "Pembahasan: Penggunaan sepatu sandal terbuka atau hak tinggi dilarang keras di lab."
+            },
+            {
+                q: "20. Dokumen keselamatan memuat informasi sifat fisik, bahaya, penyimpanan, dan penanganan darurat zat dinamakan...",
+                options: ["A. SOP", "B. ISO 9001", "C. Logbook", "D. Jurnal Praktikum", "E. MSDS / SDS"],
+                ans: 4,
+                desc: "Pembahasan: Material Safety Data Sheet (MSDS/SDS) memuat seluruh informasi K3 zat kimia."
+            }
+        ];
+
+        // Buat otomatis 30 soal PG tambahan untuk melengkapi hingga 50
+        for(let i=21; i<=50; i++) {
+            let mod = i % 5;
+            if(mod === 1) {
+                pgData.push({
+                    q: i + ". Tujuan utama rancangan reaksi kimia dengan ekonomi atom tinggi adalah...",
+                    options: ["A. Meminimalkan pembentukan limbah by-product", "B. Mempercepat reaksi tanpa katalis", "C. Menghemat penggunaan air", "D. Meningkatkan tekanan sistem", "E. Mengubah reaksi eksoterm"],
+                    ans: 0,
+                    desc: "Pembahasan: Ekonomi atom meminimalkan pembentukan limbah/produk sampingan."
+                });
+            } else if(mod === 2) {
+                pgData.push({
+                    q: i + ". Bahan kimia berlabel piktogram tengkorak dan tulang bersilang mengindikasikan...",
+                    options: ["A. Toksisitas akut beracun fatal", "B. Bahaya iritasi ringan", "C. Korosif logam", "D. Gas bertekanan", "E. Pengoksidasi"],
+                    ans: 0,
+                    desc: "Pembahasan: Simbol tengkorak menunjukkan zat beracun fatal/toksisitas akut tinggi."
+                });
+            } else if(mod === 3) {
+                pgData.push({
+                    q: i + ". Mengapa lensa kontak dilarang digunakan saat praktikum kimia?",
+                    options: ["A. Mengganggu penglihatan", "B. Uap zat kimia dapat terperangkap di bawah lensa dan merusak kornea", "C. Lensa dapat meleleh terkena air", "D. Mudah lepas saat praktikum", "E. Menghalangi fungsi goggles"],
+                    ans: 1,
+                    desc: "Pembahasan: Uap volatil dapat terperangkap di balik lensa dan merusak jaringan mata."
+                });
+            } else if(mod === 4) {
+                pgData.push({
+                    q: i + ". Alat laboratorium yang digunakan untuk menimbang padatan kimia secara tepat presisi adalah...",
+                    options: ["A. Neraca Analitik", "B. Gelas Ukur", "C. Spatula", "D. Cawan Petri", "E. Pipet Ukur"],
+                    ans: 0,
+                    desc: "Pembahasan: Neraca analitik digunakan menimbang massa zat padat dengan presisi tinggi."
+                });
+            } else {
+                pgData.push({
+                    q: i + ". Mengapa air tidak boleh dituangkan langsung ke dalam Asam Sulfat pekat?",
+                    options: ["A. Reaksi menghasilkan panas mendadak yang dapat memercikkan asam (eksoterm tinggi)", "B. Asam akan menguap habis", "C. Reaksi menjadi sangat lambat", "D. Menghasilkan gas beracun", "E. Wadah akan membeku"],
+                    ans: 0,
+                    desc: "Pembahasan: Reaksi pengenceran H2SO4 pekat sangat eksoterm; air dapat mendidih mendadak dan memercik."
+                });
+            }
+        }
+
+        // DATA SOAL ESAI (15 SOAL)
+        const essaiData = [
+            {
+                q: "1. Jelaskan konsep Ekonomi Atom (Atom Economy) dalam Kimia Hijau dan tuliskan rumus metrik efisiensinya!",
+                ans: "Konsep Ekonomi Atom mengukur sejauh mana reaktan terkonversi menjadi produk target. Rumusnya: % Atom Economy = (Massa Molar Produk Target / Total Massa Molar Seluruh Reaktan) x 100%."
+            },
+            {
+                q: "2. Mengapa penggunaan katalis selektif lebih baik dibandingkan menaikkan konsumsi reaktan dalam perspektif Kimia Hijau?",
+                ans: "Katalis menurunkan energi aktivasi reaksi tanpa terpakai habis, menghemat konsumsi energi, dan tidak menambah jumlah limbah sampingan."
+            },
+            {
+                q: "3. Jelaskan dua contoh pelarut ramah lingkungan yang aman menggantikan pelarut organik toksik volatil!",
+                ans: "1. Air (H2O): Pelarut polar non-toksik.\n2. Karbon Dioksida Superkritis (SCCO2): Memiliki sifat antara gas dan cairan yang mudah dipisahkan kembali."
+            },
+            {
+                q: "4. Tuliskan perbedaan fungsi antara Gelas Ukur dan Labu Ukur (Volumetric Flask) di laboratorium!",
+                ans: "Gelas ukur digunakan untuk mengukur/mengambil volume cairan dengan ketelitian sedang, sedangkan Labu Ukur digunakan untuk membuat larutan standar dengan presisi dan ketelitian sangat tinggi."
+            },
+            {
+                q: "5. Mengapa reaksi antara logam Tembaga (Cu) dan Asam Nitrat pekat (HNO3) wajib dilakukan di Lemari Asam?",
+                ans: "Karena reaksi tersebut menghasilkan gas Nitrogen Dioksida (NO2) berwarna cokelat yang bersifat beracun dan iritan kuat bagi saluran pernapasan."
+            },
+            {
+                q: "6. Jelaskan langkah pertolongan pertama jika kulit anggota tubuh terkena tumpahan asam pekat!",
+                ans: "Segera bilas bagian kulit yang terkena tumpahan dengan air bersih mengalir secara terus-menerus selama minimal 15-20 menit, lalu lepaskan pakaian yang terkontaminasi."
+            },
+            {
+                q: "7. Mengapa pengenceran Asam Sulfat pekat dilakukan dengan cara menambahkan asam ke dalam air, bukan sebaliknya?",
+                ans: "Karena reaksi bersifat sangat eksotermik. Jika air dituangkan ke asam pekat, panas tinggi yang terpusat dapat membuat air mendidih mendadak dan memercikkan asam pekat berbahaya."
+            },
+            {
+                q: "8. Jelaskan arti dari piktogram bahaya GHS 'Pohon Kering dan Ikan Mati' serta tata cara penanganan limbahnya!",
+                ans: "Menunjukkan bahaya bagi lingkungan akuatik. Limbahnya tidak boleh dibuang langsung ke selokan/lingkungan, melainkan ditampung pada wadah khusus B3."
+            },
+            {
+                q: "9. Sebutkan dan jelaskan 3 informasi penting yang terkandung dalam dokumen MSDS / SDS!",
+                ans: "1. Identifikasi sifat fisik dan kimia zat.\n2. Potensi bahaya kesehatan dan keselamatan.\n3. Prosedur pertolongan pertama dan penanganan tumpahan darurat."
+            },
+            {
+                q: "10. Apa fungsi dari alat Corong Pemisah (Separatory Funnel) dan berikan contoh penerapannya!",
+                ans: "Berfungsi memisahkan dua zat cair yang tidak saling bercampur (immiscible) berdasarkan perbedaan massa jenis. Contoh: memisahkan air dan kloroform."
+            },
+            {
+                q: "11. Tuliskan 4 aturan berpakaian keselamatan (dress code) wajib saat berada di dalam laboratorium kimia!",
+                ans: "1. Memakai jas lab lengan panjang dikancing rapi.\n2. Menggunakan safety goggles.\n3. Menggunakan sepatu tertutup.\n4. Mengikat rambut panjang ke belakang."
+            },
+            {
+                q: "12. Mengapa pelepasan gas CO2 dari reaksi kimia berlebih menjadi ancaman lingkungan global?",
+                ans: "Karena gas CO2 adalah Gas Rumah Kaca (GRK) yang menangkap panas di atmosfer dan memicu pemanasan global serta perubahan iklim."
+            },
+            {
+                q: "13. Sebutkan alat laboratorium porselen yang digunakan untuk menghaluskan kristal kimia dan jelaskan cara kerjanya!",
+                ans: "Mortal dan Alu (Mortar and Pestle). Cara kerjanya dengan menggerus kristal padat di dalam wadah mortal menggunakan alu hingga halus."
+            },
+            {
+                q: "14. Jelaskan bahaya dari piktogram GHS 'Nyala Api di Atas Lingkaran' (Flame over Circle) dan berikan contoh zatnya!",
+                ans: "Menandakan zat pengoksidasi (oxidizing) yang melepaskan oksigen sehingga dapat memicu/memperhebat kebakaran. Contoh: Kalium Permanganat (KMnO4)."
+            },
+            {
+                q: "15. Tuliskan contoh penerapan prinsip Kimia Hijau ke-7 yaitu penggunaan Bahan Baku Terbarukan!",
+                ans: "Pembuatan bioetanol dan biodiesel dari limbah biomassa pertanian atau minyak nabati untuk menggantikan bahan bakar fosil."
+            }
+        ];
+
+        // RENDER SOAL PG
+        function renderPG() {
+            const container = document.getElementById('pg-container');
+            container.innerHTML = '';
+
+            pgData.forEach((data, idx) => {
+                let html = `
+                    <div class="question-card" id="q-card-${idx}">
+                        <p class="q-text">${data.q}</p>
+                        <ul class="options-list">
+                `;
+                data.options.forEach((opt, optIdx) => {
+                    html += `
+                        <li>
+                            <label>
+                                <input type="radio" name="pg-${idx}" value="${optIdx}">
+                                ${opt}
+                            </label>
+                        </li>
+                    `;
+                });
+                html += `
+                        </ul>
+                        <div class="answer-box" id="ans-box-${idx}">
+                            ${data.desc}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        // RENDER SOAL ESAI
+        function renderEssai() {
+            const container = document.getElementById('essai-container');
+            container.innerHTML = '';
+
+            essaiData.forEach((data, idx) => {
+                let html = `
+                    <div class="question-card">
+                        <p class="q-text">${data.q}</p>
+                        <textarea class="essay-input" placeholder="Ketik jawaban Anda di sini untuk latihan..."></textarea>
+                        <button type="button" class="btn-toggle" onclick="toggleAnswer(${idx})">Lihat Kunci Jawaban & Pembahasan</button>
+                        <div class="answer-box" id="essai-ans-${idx}">
+                            <strong>Kunci Jawaban:</strong><br>${data.ans.replace(/\n/g, '<br>')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        // SWITCH TAB
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            if (tabName === 'pg') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('tab-pg').classList.add('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('tab-essai').classList.add('active');
+            }
+        }
+
+        // PERIKSA NILAI PG
+        function gradePG() {
+            let score = 0;
+            let total = pgData.length;
+
+            pgData.forEach((data, idx) => {
+                const selected = document.querySelector(`input[name="pg-${idx}"]:checked`);
+                const ansBox = document.getElementById(`ans-box-${idx}`);
+                ansBox.style.display = 'block';
+
+                if (selected && parseInt(selected.value) === data.ans) {
+                    score++;
+                    document.getElementById(`q-card-${idx}`).style.borderColor = '#22c55e';
+                } else {
+                    document.getElementById(`q-card-${idx}`).style.borderColor = '#ef4444';
+                }
+            });
+
+            const finalScore = (score / total) * 100;
+            const scoreDisplay = document.getElementById('score-display');
+            scoreDisplay.style.display = 'block';
+            scoreDisplay.innerHTML = `Hasil Latihan Pilihan Ganda Anda: ${score} dari ${total} Soal Benar (Nilai: ${finalScore.toFixed(1)})`;
+            scoreDisplay.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // TOGGLE KUNCI ESAI
+        function toggleAnswer(idx) {
+            const ansBox = document.getElementById(`essai-ans-${idx}`);
+            if (ansBox.style.display === 'block') {
+                ansBox.style.display = 'none';
+            } else {
+                ansBox.style.display = 'block';
+            }
+        }
+
+        // INITIALIZE ON LOAD
+        window.onload = function() {
+            renderPG();
+            renderEssai();
+        };
+    </script>
+</body>
+</html>
