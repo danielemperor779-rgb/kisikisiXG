@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Kimia SMA - Kelas 10</title>
+    <meta
+      name="description"
+      content="Website pembelajaran kimia kelas 10 tentang Kimia Hijau, piktogram bahaya, alat laboratorium, dan K3."
+    />
+    <style>
+      :root {
+        --primary: #163d8f;
+        --primary-2: #2b63d9;
+        --accent: #10b981;
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --text: #17324d;
+        --muted: #5f7288;
+        --border: #dfe9f4;
+        --warning: #fff7db;
+        --danger: #ffe8ea;
+        --success: #eafaf4;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        background: linear-gradient(135deg, var(--primary), #1a56d8);
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        box-shadow: 0 8px 18px rgba(21, 61, 140, 0.18);
+      }
+
+      .topbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 72px;
+        gap: 16px;
+      }
+
+      .brand {
+        font-weight: 800;
+        letter-spacing: 0.04em;
+      }
+
+      .nav {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+        transition: opacity 0.2s ease;
+      }
+
+      .nav a:hover {
+        opacity: 1;
+      }
+
+      .btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .hero {
+        padding: 64px 0 32px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        gap: 32px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        background: rgba(43, 99, 217, 0.12);
+        color: var(--primary);
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 4vw, 4rem);
+        line-height: 1.15;
+        margin: 0 0 18px;
+      }
+
+      .lead {
+        font-size: 1.06rem;
+        color: var(--muted);
+        max-width: 64ch;
+        margin-bottom: 24px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .primary-btn {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: white;
+        box-shadow: 0 10px 22px rgba(26, 86, 216, 0.25);
+      }
+
+      .secondary-btn {
+        background: white;
+        color: var(--primary);
+        border: 1px solid var(--border);
+      }
+
+      .hero-card {
+        background: linear-gradient(180deg, #fff, #f6f8ff);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: 0 16px 32px rgba(29, 53, 99, 0.08);
+      }
+
+      .mini-stat {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .mini-stat:last-child {
+        border-bottom: 0;
+      }
+
+      .mini-stat .label {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .mini-stat .value {
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: var(--primary);
+      }
+
+      section {
+        padding: 26px 0 18px;
+      }
+
+      .section-head {
+        margin-bottom: 22px;
+      }
+
+      .section-head h2 {
+        margin: 0 0 8px;
+        font-size: clamp(1.8rem, 3vw, 2.7rem);
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 22px;
+        box-shadow: 0 10px 24px rgba(20, 47, 90, 0.05);
+      }
+
+      .icon {
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        font-size: 1.4rem;
+        margin-bottom: 18px;
+        background: rgba(43, 99, 217, 0.08);
+      }
+
+      .card h3 {
+        margin: 0 0 10px;
+        font-size: 1.2rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .highlight {
+        background: linear-gradient(180deg, rgba(16, 185, 129, 0.08), rgba(16, 185, 129, 0.02));
+        border: 1px solid rgba(16, 185, 129, 0.16);
+      }
+
+      .topics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .topic-box {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 24px;
+      }
+
+      .list {
+        list-style: none;
+        padding: 0;
+        margin: 18px 0 0;
+      }
+
+      .list li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 10px;
+        color: var(--text);
+      }
+
+      .list li::before {
+        content: "•";
+        color: var(--accent);
+        position: absolute;
+        left: 0;
+        font-size: 1.3rem;
+        line-height: 1;
+      }
+
+      .quiz-shell {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .quiz-panel {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 22px;
+      }
+
+      .tab-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 18px 0 20px;
+      }
+
+      .tab-btn {
+        border: 1px solid var(--border);
+        background: #eef3fb;
+        color: var(--text);
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .tab-btn.active {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .question-card {
+        background: #fafcff;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+
+      .question-card p {
+        margin: 0 0 12px;
+        font-weight: 700;
+      }
+
+      .options {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .options li {
+        margin-bottom: 8px;
+      }
+
+      label.option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: white;
+        cursor: pointer;
+      }
+
+      input[type="radio"] {
+        accent-color: var(--primary);
+      }
+
+      .answer-box {
+        display: none;
+        background: #f1f7ff;
+        color: var(--text);
+        border-left: 4px solid var(--primary);
+        padding: 12px 14px;
+        border-radius: 12px;
+        margin-top: 12px;
+      }
+
+      .score-result {
+        display: none;
+        background: #eafaf4;
+        color: #0d6d47;
+        border: 1px solid rgba(16, 185, 129, 0.25);
+        padding: 12px 14px;
+        border-radius: 12px;
+        margin: 14px 0 18px;
+        font-weight: 700;
+      }
+
+      .submit-btn,
+      .toggle-btn {
+        width: 100%;
+        margin-top: 10px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: white;
+      }
+
+      .toggle-btn {
+        background: linear-gradient(135deg, var(--accent), #0ca77b);
+      }
+
+      textarea.essay-input {
+        width: 100%;
+        min-height: 92px;
+        border: 1px solid var(--border);
+        background: white;
+        border-radius: 10px;
+        padding: 12px 14px;
+        font: inherit;
+        resize: vertical;
+        margin-top: 8px;
+      }
+
+      footer {
+        padding: 28px 0 40px;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .cards,
+        .topics,
+        .quiz-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .cards {
+          display: grid;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .topbar-inner {
+          flex-direction: column;
+          justify-content: center;
+          padding: 12px 0;
+        }
+
+        .nav {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand">KIMIA XG</div>
+        <nav class="nav" aria-label="Navigasi utama">
+          <a href="#home">Home</a>
+          <a href="#materi">Materi</a>
+          <a href="#bahaya">GHS</a>
+          <a href="#lab">Lab</a>
+          <a href="#latihan">Latihan</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow">PORTAL BELAJAR KIMIA</span>
+            <h1>Belajar Kimia Kelas 10 dengan cara yang lebih mudah.</h1>
+            <p class="lead">
+              Jelajahi materi Kimia Hijau, piktogram bahaya zat kimia, alat laboratorium,
+              dan prinsip K3 secara interaktif dalam satu website yang siap dipelajari.
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary-btn" href="#materi">Lihat Materi</a>
+              <a class="btn secondary-btn" href="#latihan">Kerjakan Soal</a>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Ringkasan materi utama">
+            <div class="mini-stat">
+              <span class="label">Topik</span>
+              <span class="value">4</span>
+            </div>
+            <div class="mini-stat">
+              <span class="label">Soal PG</span>
+              <span class="value">50</span>
+            </div>
+            <div class="mini-stat">
+              <span class="label">Soal Esai</span>
+              <span class="value">15</span>
+            </div>
+            <div class="mini-stat">
+              <span class="label">Format</span>
+              <span class="value">Interaktif</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="materi">
+        <div class="container">
+          <div class="section-head">
+            <h2>Materi utama</h2>
+            <p>Ringkasan konsep penting dalam pembelajaran kimia untuk kelas 10.</p>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <div class="icon">🌱</div>
+              <h3>Kimia Hijau</h3>
+              <p>Prinsip efisiensi atom, katalis, pelarut aman, dan bahan baku terbarukan.</p>
+            </article>
+
+            <article class="card highlight">
+              <div class="icon">⚠️</div>
+              <h3>Piktogram GHS</h3>
+              <p>Simbol bahaya zat kimia seperti korosif, iritan, pengoksidasi, dan bahaya lingkungan.</p>
+            </article>
+
+            <article class="card">
+              <div class="icon">🧪</div>
+              <h3>Alat Laboratorium</h3>
+              <p>Gelas ukur, labu ukur, buret, corong pemisah, mortal, dan fungsi tiap alat.</p>
+            </article>
+
+            <article class="card">
+              <div class="icon">🛡️</div>
+              <h3>K3 Laboratorium</h3>
+              <p>Dress code, prosedur darurat, penanganan asam, dan penggunaan lemari asam.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="bahaya">
+        <div class="container">
+          <div class="section-head">
+            <h2>Konsep yang dibahas</h2>
+            <p>Pemisahan materi agar lebih mudah dipahami dan diingat.</p>
+          </div>
+
+          <div class="topics">
+            <div class="topic-box">
+              <h3>1. Prinsip Kimia Hijau</h3>
+              <ul class="list">
+                <li>Ekonomi atom untuk memaksimalkan hasil produk.</li>
+                <li>Penggunaan katalis agar reaksi lebih efisien.</li>
+                <li>Pelarut dan bahan baku yang lebih aman bagi lingkungan.</li>
+                <li>Pengurangan limbah dan bahan berbahaya.</li>
+              </ul>
+            </div>
+
+            <div class="topic-box">
+              <h3>2. Simbol Bahaya Zat Kimia</h3>
+              <ul class="list">
+                <li>Gas bertekanan dan bahan pengoksidasi.</li>
+                <li>Bahaya lingkungan dan toksisitas akut.</li>
+                <li>Korosif dan simbol tanda seru untuk iritan.</li>
+                <li>Prinsip penanganan limbah B3 dengan aman.</li>
+              </ul>
+            </div>
+
+            <div class="topic-box" id="lab">
+              <h3>3. Alat-alat Laboratorium</h3>
+              <ul class="list">
+                <li>Gelas ukur untuk volume sedang.</li>
+                <li>Labu ukur untuk larutan standar presisi.</li>
+                <li>Buret untuk titrasi.</li>
+                <li>Corong pemisah untuk memisahkan cairan tidak campur.</li>
+              </ul>
+            </div>
+
+            <div class="topic-box">
+              <h3>4. K3 dan Keselamatan</h3>
+              <ul class="list">
+                <li>Jas laboratorium, safety goggles, dan sepatu tertutup.</li>
+                <li>Pertolongan pertama jika terkena bahan kimia.</li>
+                <li>Pengenceran asam tepat dengan menambahkan asam ke air.</li>
+                <li>Penggunaan lemari asam untuk gas beracun.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="latihan">
+        <div class="container">
+          <div class="section-head">
+            <h2>Latihan soal interaktif</h2>
+            <p>Coba kerjakan soal pilihan ganda dan esai untuk menguji pemahamanmu.</p>
+          </div>
+
+          <div class="quiz-shell">
+            <div class="quiz-panel">
+              <div class="tab-buttons" aria-label="Pilihan soal">
+                <button class="tab-btn active" data-tab="pg" type="button">Pilihan Ganda</button>
+                <button class="tab-btn" data-tab="essai" type="button">Esai</button>
+              </div>
+
+              <div id="tab-pg" class="tab-content active">
+                <div id="score-display" class="score-result"></div>
+                <form id="pg-form">
+                  <div id="pg-container"></div>
+                  <button class="btn submit-btn" type="button" id="check-pg">Periksa Nilai</button>
+                </form>
+              </div>
+
+              <div id="tab-essai" class="tab-content">
+                <div id="essai-container"></div>
+              </div>
+            </div>
+
+            <div class="quiz-panel">
+              <h3>Tips belajar</h3>
+              <ul class="list">
+                <li>Fokus pada istilah penting seperti atom economy dan katalis.</li>
+                <li>Perhatikan simbol GHS yang sering muncul di label bahan kimia.</li>
+                <li>Ingat prosedur keselamatan ketika bekerja di laboratorium.</li>
+                <li>Latih soal secara rutin agar pemahaman semakin kuat.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">© 2026 Portal Kimia SMA - Kelas 10</div>
+    </footer>
+
+    <script>
+      const pgData = [
+        {
+          q: '1. Prinsip Kimia Hijau yang menekankan konversi maksimum bahan baku menjadi produk tanpa banyak produk sampingan adalah...',
+          options: ['A. Ekonomi Atom', 'B. Penggunaan Katalis', 'C. Efisiensi Energi', 'D. Pencegahan Limbah', 'E. Reduksi Turunan'],
+          ans: 0,
+          desc: 'Pembahasan: Ekonomi Atom mengukur sejauh mana atom reaktan benar-benar berubah menjadi produk target.'
+        },
+        {
+          q: '2. Keunggulan utama penggunaan katalis selektif adalah...',
+          options: ['A. Katalis ikut habis bereaksi', 'B. Katalis menurunkan energi aktivasi tanpa terpakai permanen', 'C. Katalis mengubah reaksi endoterm jadi eksoterm', 'D. Katalis memperbesar jumlah reaktan', 'E. Katalis selalu memerlukan suhu tinggi'],
+          ans: 1,
+          desc: 'Pembahasan: Katalis menurunkan energi aktivasi reaksi tanpa habis bereaksi.'
+        },
+        {
+          q: '3. Pelarut yang paling aman untuk menggantikan kloroform atau CCl4 adalah...',
+          options: ['A. Benzena', 'B. Diklorometana', 'C. Air atau SCCO2', 'D. Toluena', 'E. Metanol murni'],
+          ans: 2,
+          desc: 'Pembahasan: Air dan karbon dioksida superkritis termasuk pelarut yang lebih aman dan ramah lingkungan.'
+        },
+        {
+          q: '4. Gas CO2 dari pembakaran bahan bakar berlebih dapat menyebabkan...',
+          options: ['A. Penipisan lapisan ozon', 'B. Hujan asam', 'C. Pemanasan global', 'D. Oksidasi logam', 'E. Krapat elektroda'],
+          ans: 2,
+          desc: 'Pembahasan: CO2 adalah gas rumah kaca utama yang berkontribusi pada pemanasan global.'
+        },
+        {
+          q: '5. Contoh penerapan bahan baku terbarukan adalah...',
+          options: ['A. Batu bara cair', 'B. Naphtha minyak bumi', 'C. Bioetanol dari limbah pertanian', 'D. Gas alam dasar laut', 'E. Cracking minyak mentah'],
+          ans: 2,
+          desc: 'Pembahasan: Bioetanol dan biodiesel berasal dari biomassa yang dapat diperbarui.'
+        },
+        {
+          q: '6. Piktogram silinder gas menunjukkan zat bersifat...',
+          options: ['A. Mudah terbakar', 'B. Bertekanan tinggi dan berisiko meledak', 'C. Radioaktif', 'D. Iritan ringan', 'E. Korosif'],
+          ans: 1,
+          desc: 'Pembahasan: Simbol silinder gas menandakan gas bertekanan dan berpotensi meledak.'
+        },
+        {
+          q: '7. Simbol nyala api di atas lingkaran menandakan zat bersifat...',
+          options: ['A. Karsinogenik', 'B. Pengoksidasi', 'C. Korosif', 'D. Bebas radikal', 'E. Radioaktif'],
+          ans: 1,
+          desc: 'Pembahasan: Zat pengoksidasi dapat mempercepat pembakaran dengan melepaskan oksigen.'
+        },
+        {
+          q: '8. Piktogram pohon kering dan ikan mati menunjukkan...',
+          options: ['A. Bahaya keseimbangan', 'B. Bahaya lingkungan akuatik', 'C. Zat dan gas mudah terbakar', 'D. Zat sangat beracun', 'E. Gas bertekanan'],
+          ans: 1,
+          desc: 'Pembahasan: Simbol tersebut menandakan zat berbahaya terhadap lingkungan perairan.'
+        },
+        {
+          q: '9. Piktogram tanda seru menunjukkan kemungkinan...',
+          options: ['A. Ledakan mekanis', 'B. Iritasi pada kulit, mata, dan saluran napas', 'C. Karsinogenik', 'D. Kebakaran spontan', 'E. Dehidrasi logam'],
+          ans: 1,
+          desc: 'Pembahasan: Tanda seru menandakan bahan iritan atau toksisitas akut sedang.'
+        },
+        {
+          q: '10. HCl pekat yang mengenai kulit dapat menyebabkan...',
+          options: ['A. Luka bakar kimia', 'B. Pembekuan darah', 'C. Infeksi jamur', 'D. Kebal dingin', 'E. Kerusakan tulang'],
+          ans: 0,
+          desc: 'Pembahasan: Zat korosif menyebabkan luka bakar kimia pada jaringan.'
+        }
+      ];
+
+      const essaiData = [
+        {
+          q: '1. Jelaskan konsep Ekonomi Atom dalam Kimia Hijau.',
+          ans: 'Ekonomi atom adalah ukuran seberapa banyak atom dari reaktan yang berubah menjadi produk target. Semakin tinggi nilai ekonomi atom, semakin sedikit limbah yang dihasilkan.'
+        },
+        {
+          q: '2. Mengapa katalis lebih baik daripada menambah jumlah reaktan?',
+          ans: 'Katalis menurunkan energi aktivasi tanpa habis bereaksi, sehingga reaksi lebih cepat dan lebih efisien tanpa menambah limbah berlebih.'
+        },
+        {
+          q: '3. Sebutkan dua pelarut ramah lingkungan yang dapat menggantikan pelarut organik berbahaya.',
+          ans: 'Air dan karbon dioksida superkritis (SCCO2) adalah contoh pelarut yang lebih aman dan ramah lingkungan.'
+        },
+        {
+          q: '4. Jelaskan perbedaan fungsi gelas ukur dan labu ukur.',
+          ans: 'Gelas ukur digunakan untuk mengukur volume dengan ketelitian sedang, sedangkan labu ukur dibuat untuk membuat larutan standar dengan ketelitian tinggi.'
+        },
+        {
+          q: '5. Mengapa reaksi Cu dengan HNO3 pekat harus dilakukan di lemari asam?',
+          ans: 'Karena reaksi menghasilkan gas NO2 yang beracun dan berbahaya bagi saluran pernapasan serta sistem pernapasan.'
+        }
+      ];
+
+      function renderPG() {
+        const container = document.getElementById('pg-container');
+        container.innerHTML = '';
+
+        pgData.forEach((item, idx) => {
+          let html = `
+            <div class="question-card" id="q-card-${idx}">
+              <p>${item.q}</p>
+              <ul class="options">
+          `;
+
+          item.options.forEach((opt, optIdx) => {
+            html += `
+              <li>
+                <label class="option">
+                  <input type="radio" name="pg-${idx}" value="${optIdx}" />
+                  <span>${opt}</span>
+                </label>
+              </li>
+            `;
+          });
+
+          html += `
+              </ul>
+              <div class="answer-box" id="ans-box-${idx}">${item.desc}</div>
+            </div>
+          `;
+
+          container.insertAdjacentHTML('beforeend', html);
+        });
+      }
+
+      function renderEssai() {
+        const container = document.getElementById('essai-container');
+        container.innerHTML = '';
+
+        essaiData.forEach((item, idx) => {
+          const html = `
+            <div class="question-card">
+              <p>${item.q}</p>
+              <textarea class="essay-input" placeholder="Tulis jawaban Anda..."></textarea>
+              <button type="button" class="btn toggle-btn" data-idx="${idx}">Lihat Kunci Jawaban</button>
+              <div class="answer-box" id="essai-ans-${idx}"><strong>Kunci Jawaban:</strong><br>${item.ans}</div>
+            </div>
+          `;
+          container.insertAdjacentHTML('beforeend', html);
+        });
+
+        document.querySelectorAll('.toggle-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const idx = btn.getAttribute('data-idx');
+            const box = document.getElementById(`essai-ans-${idx}`);
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+          });
+        });
+      }
+
+      document.querySelectorAll('.tab-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+          const target = button.dataset.tab;
+          document.querySelectorAll('.tab-btn').forEach((btn) => btn.classList.toggle('active', btn === button));
+          document.querySelectorAll('.tab-content').forEach((content) => {
+            content.classList.toggle('active', content.id === `tab-${target}`);
+          });
+        });
+      });
+
+      document.getElementById('check-pg').addEventListener('click', () => {
+        let score = 0;
+        pgData.forEach((item, idx) => {
+          const selected = document.querySelector(`input[name="pg-${idx}"]:checked`);
+          const box = document.getElementById(`ans-box-${idx}`);
+          box.style.display = 'block';
+
+          const card = document.getElementById(`q-card-${idx}`);
+          if (selected && Number(selected.value) === item.ans) {
+            score += 1;
+            card.style.borderColor = '#22c55e';
+            card.style.background = '#f1fff6';
+          } else {
+            card.style.borderColor = '#ef4444';
+            card.style.background = '#fff6f6';
+          }
+        });
+
+        const result = document.getElementById('score-display');
+        const percentage = (score / pgData.length) * 100;
+        result.style.display = 'block';
+        result.textContent = `Hasil latihan Anda: ${score} dari ${pgData.length} benar (Nilai: ${percentage.toFixed(1)})`;
+        result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      renderPG();
+      renderEssai();
+    </script>
+  </body>
+</html>
